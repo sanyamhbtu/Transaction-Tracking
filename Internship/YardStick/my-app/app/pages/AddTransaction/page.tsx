@@ -19,6 +19,10 @@ export default function AddTransaction() {
   const [amount, setAmount] = useState<number>(0);
   const [type, setType] = useState<"Debit" | "Credit">("Debit");
   const handleSubmit = async () => {
+    if (!amount || !date || !description) {
+      alert("Please fill in all fields.");
+      return;
+    }
     try {
       await axios.post("/api/transactions",{
         amount : Number(amount),

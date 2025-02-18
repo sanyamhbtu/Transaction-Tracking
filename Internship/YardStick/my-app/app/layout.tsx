@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <div className="grid grig-rows-2 lg:grid-cols-2 gap-4">
+        <div className="grid grid-rows-2 lg:grid-cols-2 sm:grid-cols-1 gap-4">
           <MonthlyChart />
           {children}
         </div>
