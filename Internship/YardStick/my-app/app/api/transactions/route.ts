@@ -18,7 +18,7 @@ export async function POST(req : Request){
         const newTransaction = await Transaction.create({ amount : Number(amount), type,  date , description });
         return NextResponse.json(newTransaction, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+        return NextResponse.json({ error: `Something went wrong ${error}`}, { status: 500 });
     }
 }
 
@@ -28,7 +28,7 @@ export async function GET(){
         const transactions = await Transaction.find();
         return NextResponse.json({ transactions }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: "Failed to fetch transactions" }, { status: 500 });
+        return NextResponse.json({ error: `Failed to fetch transactions. ${error}` }, { status: 500 });
     }
 }
 
@@ -54,7 +54,7 @@ export async function DELETE(req : Request){
             { status: 200 }
         );
     } catch (error) {
-        return NextResponse.json({ error: "Transaction deletion failed" }, { status: 500 });
+        return NextResponse.json({ error: `Transaction deletion failed. ${error}` }, { status: 500 });
  
     }
 }

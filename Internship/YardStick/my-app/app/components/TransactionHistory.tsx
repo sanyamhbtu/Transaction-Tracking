@@ -15,7 +15,7 @@ type Txn = {
     _id : string;
     type : "Debit" | "Credit"
     amount : number;
-    date : String;
+    date : string;
     description : string;
 }
 import { Trash2  } from "lucide-react";
@@ -36,7 +36,7 @@ export default function TransactionHistory() {
         alert("Transaction deteled successfully");
         setTransactions(transactions.filter((txn) => txn._id !== id));
     } catch (error) {
-        alert("Something went wrong");
+        alert(`Something went wrong ${error}`);
     }
         
 }

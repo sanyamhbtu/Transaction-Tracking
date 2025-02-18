@@ -4,7 +4,12 @@ type Expenses = {
     month: string;
     expenses: number;
 };
-
+type Transaction = {
+    amount: number;
+    type: string;
+    date: string;
+    description: string;
+}
 export const getMonthlyExpenses = async (): Promise<Expenses[]> => {
     try {
         const response = await axios.get("http://localhost:3000/api/transactions");
@@ -12,8 +17,8 @@ export const getMonthlyExpenses = async (): Promise<Expenses[]> => {
 
         const monthMap: { [key: string]: number } = {};
 
-        transactions.forEach((transaction: any) => {
-            let dateParts = transaction.date.split("/");
+        transactions.forEach((transaction: Transaction) => {
+            const dateParts = transaction.date.split("/");
             let monthNumber: number;
 
             if (dateParts.length === 3) {

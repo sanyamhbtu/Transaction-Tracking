@@ -12,7 +12,6 @@ import { Input } from "@/app/components/ui/input"
 import { Label } from "@/app/components/ui/label"
 import { useState } from "react"
 import axios from 'axios';
-import e from "cors";
 export default function AddTransaction() {
   const router = useRouter();
   const [description , setDiscription] = useState<string>("");
@@ -21,7 +20,7 @@ export default function AddTransaction() {
   const [type, setType] = useState<"Debit" | "Credit">("Debit");
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/transactions",{
+      await axios.post("/api/transactions",{
         amount : Number(amount),
         type,
         date,
@@ -37,8 +36,7 @@ export default function AddTransaction() {
         alert("Transaction added successfully");
         router.push("/");
     } catch (error) {
-      console.log(error);
-       alert("Something went wrong");
+       alert(`Something went wrong ${error}`);
        return;
     }
       
